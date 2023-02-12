@@ -1,0 +1,29 @@
+var element_search = function(nums, target) {
+    let start = 0, end = 0;
+    let low = 0, high = nums.length - 1;
+    while (low <= high) {
+        let mid = Math.floor((low + high) / 2);
+        if (nums[mid] === target) {
+            start = mid;
+            end = mid;
+            while (start-1 > 0 && nums[start - 1] === target) {
+                start--;
+            }
+            while (end+1 < nums.length && nums[end + 1] === target) {
+                end++;
+            }
+            return [start, end];
+        }
+        if (nums[mid] < target) {
+            low = mid + 1;
+        } else {
+            high = mid - 1;
+        }
+    }
+    return [-1, -1];
+}
+
+nums = [5,8,8,8,8,8,8,8,8,10]
+target = 8
+var a = element_search(nums,target);
+console.log(a);
